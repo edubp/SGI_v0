@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <title> {% block title %} SGI {% endblock %} </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" >
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylecss.css') }}" >
+        <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sticky-footer-navbar/">
+        {% block link %} {% endblock %}
+
+        {% block style %} {% endblock %}
+
+
+    </head>
+    
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #74a3c5;">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+              <img id="logo"  src="{{ url_for('static', filename='img/inmetro1.jpg')}}" width="80" style="text-align:center" alt="Inmetro">
+            </a>
+            <a class="navbar-brand" href="{{ url_for('laeta.index') }}" style="color:whitesmoke;">Início </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:whitesmoke;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Registros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ url_for('equip.equipamentos') }}">Equipamentos - Lista Mestre</a>
+                      <a class="dropdown-item" href="{{ url_for('cliente.clientes') }}">Clientes</a>
+                    </div>
+                </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:whitesmoke;" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Serviços
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ url_for('indice.indice_geral')}}">Índice Geral</a>
+                      <a class="dropdown-item" href="{{ url_for('agendamento.agendamentos') }}">Agendar Serviços</a>
+                      <a class="dropdown-item" href="{{ url_for('agendamento.listarTodosAgendamentos') }}">Listar Agendamentos</a>
+                    </div>
+                </li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:whitesmoke;" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Downloads
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ url_for('indice.download_Indice_Geral') }}">Índice Geral</a>
+                      <a class="dropdown-item" href="{{ url_for('agendamento.download_Agendamentos') }}">Agendamentos</a>
+                      <a class="dropdown-item" href="{{ url_for('equip.download_Equipamentos') }}">Lista Mestre</a>
+                      <a class="dropdown-item" href="{{ url_for('cliente.download_Clientes') }}">Clientes</a>
+                    </div>
+                </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:whitesmoke;" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Normas Internas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Laboratório 1 : Thiago / Mauro</a>
+                      <a class="dropdown-item" href="#">Laboratório 2 : Nelson / Salatiel</a>
+                      <a class="dropdown-item" href="#">Laboratório 3 : Eduardo</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:whitesmoke;" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Pessoal
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Registro de atividades</a>
+                      <a class="dropdown-item" href="#">Outros</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:whitesmoke;" href="{{ url_for('laeta.colaboradores') }}" >Colaboradores</a>
+                </li>
+                <li class="nav-item"></li>
+                    {% if current_user.is_authenticated and current_user.nome == 'Eduardo'  %}
+                        <a class="nav-link" style="color:whitesmoke;" href="#">Logs</a>
+                    {% endif %}
+                </li>
+                  <li class="nav-item">
+                  <a class="nav-link" style="color:whitesmoke;" href="{{ url_for('auth.logout') }}">Logout</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+
+          {% block content %}
+          {% endblock %}
+
+
+
+       <script src="{{ url_for('static', filename='js//jquery-3.5.1.slim.min.js')}}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+       <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+       <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    </body>
+
+
+</html>
+
+
+
+

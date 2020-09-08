@@ -1,0 +1,17 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Download Índice Geral {% endblock %}
+{% block content %}
+
+<ul>
+    {% for file in files %}
+    <li>
+        <!--<a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">-->
+        <a href="/baixar_Lista_Indice_Geral/{{file}}">
+            {{ (request.path + '/' if request.path != '/' else '') + file }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

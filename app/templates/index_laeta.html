@@ -1,0 +1,12 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Index {% endblock %}
+{% block content %}
+
+<h6>Bem Vindo, {{ name }}!</h6>
+
+  <div class="text-center">
+    <img src="{{ url_for('static', filename='img/inmetro1.jpg') }}" class="rounded" alt="...">
+  </div>
+
+
+{% endblock %}

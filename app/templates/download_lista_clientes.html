@@ -1,0 +1,17 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Download Lista Clientes {% endblock %}
+{% block content %}
+
+<ul>
+    {% for file in files %}
+    <li>
+        <!--<a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">-->
+        <a href="/baixar_Clientes/{{file}}">
+            {{ (request.path + '/' if request.path != '/' else '') + file }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

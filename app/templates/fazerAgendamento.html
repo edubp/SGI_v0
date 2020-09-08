@@ -1,0 +1,67 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Agendar {% endblock %}
+{% block content %}
+<div class="container">
+<form action="/fazerAgendamento" method="post">
+  <div class="form-group row">
+    <label for="data_calibracao" class="col-sm-2 col-form-label">Data da calibração</label>
+    <div class="col-sm-4">
+      <input type="date" format="dd/mm/yyyy" name = 'data_calibracao' class="form-control" id="data_calibracao" value={{data}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="processo" class="col-sm-2 col-form-label">Processo</label>
+    <div class="col-sm-4">
+      <input type="text" name = 'processo' class="form-control" id="processo" placeholder="N. Processo" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="equipamento" class="col-sm-2 col-form-label">Equipamento</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'equipamento' class="form-control" id="equipamento" placeholder="Equipamento" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="prazo" class="col-sm-2 col-form-label">Prazo</label>
+    <div class="col-sm-2">
+      <input type="number" min="1" max="180" name = 'prazo' class="form-control" id="prazo" placeholder="Prazo" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
+    <div class="col-sm-4">
+      <select name = 'cliente'  class="custom-select mr-sm-2" id="cliente" required>
+        <option selected>...</option>
+        {% for c in clientes %}
+        <option value='{{c.id}}'>Nome:{{c.nome}} / MCI: {{c.mci}}</option>
+        {% endfor %}
+      </select>
+  </div>
+  </div>
+  <div class="form-group row">
+    <label for="laboratorio" class="col-sm-2 col-form-label">Laboratótio</label>
+    <div class="col-sm-4">
+      <select name = 'laboratorio'  class="custom-select mr-sm-2" id="laboratorio" required>
+        <option value='Laboratório 1 : Thiago / Mauro' selected>Laboratório 1 : Thiago / Mauro</option>
+        <option value='Laboratório 2 : Nelson / Salatiel'>Laboratório 2 : Nelson / Salatiel</option>
+        <option value='Laboratório 3 : Eduardo'>Laboratório 3 : Eduardo</option>
+      </select>
+  </div>
+  </div>
+   <div class="form-group row">
+    <label for="descricao" class="col-sm-2 col-form-label">Descrição</label>
+    <div class="col-sm-8">
+      <textarea class="form-control" name="descricao" id="descricao" rows="6"></textarea>
+    </div>
+  </div>
+   <div class="form-group row">
+    <button class="btn btn-dark btn-lg btn-block" type="submit" class="col-sm-2 col-form-label">Salvar</button>
+  </div>
+
+
+
+</form>
+</div>
+{% endblock %}

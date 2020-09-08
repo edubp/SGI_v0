@@ -1,0 +1,86 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Editar Equipamentos{% endblock %}
+{% block content %}
+<div class="container">
+   <h3 align="center">Editar Equipamento</h3>
+<form action="/editarEquipamento/{{e.id}}" method="post">
+  <div class="form-group row">
+    <label for="equipamento" class="col-sm-2 col-form-label">Equipamento</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'equipamento' class="form-control" id="equipamento" placeholder="Equipamento" value="{{e.equipamento}}" >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="codigo" class="col-sm-2 col-form-label">Código</label>
+    <div class="col-sm-4">
+      <input type="text" name = 'codigo' class="form-control" id="codigo" placeholder="Código" value="{{e.codigo}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="fabricante" class="col-sm-2 col-form-label">Fabricante</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'fabricante' class="form-control" id="fabricante" placeholder="Fabricante" value="{{e.fabricante}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'modelo' class="form-control" id="modelo" placeholder="Modelo" value="{{e.modelo}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="serie" class="col-sm-2 col-form-label">N. Série</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'serie' class="form-control" id="serie" placeholder="N. Série" value="{{e.serie}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="periodicidade" class="col-sm-2 col-form-label">Periodicidade</label>
+    <div class="col-sm-2">
+      <input type="number" min="1" max="10" name = 'periodicidade' class="form-control" id="periodicidade" placeholder="Periodicidade" value="{{e.periodicidade}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="data_ultima_calibracao" class="col-sm-2 col-form-label">Data da última calibração</label>
+    <div class="col-sm-4">
+      <input type="date" name = 'data_ultima' class="form-control" id="data_ultima_calibracao"  placeholder="dd/mm/aaaa" value="{{data_ultima}}">
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="certificado" class="col-sm-2 col-form-label">Último Certificado</label>
+    <div class="col-sm-6">
+      <input type="text" name = 'certificado' class="form-control" id="certificado" placeholder="Último Certificado" value="{{e.certificado}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="data_proxima_calibracao" class="col-sm-2 col-form-label">Data da próxima calibração</label>
+    <div class="col-sm-4">
+      <input type="date" name = 'data_proxima' class="form-control" id="data_proxima_calibracao" placeholder="dd/mm/aaaa" value="{{data_proxima}}" >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="usuario" class="col-sm-2 col-form-label">Usuário</label>
+    <div class="col-sm-4">
+      <select name = 'usuario'  class="custom-select mr-sm-2" id="usuario" required>
+        <option selected value='{{usuario.id}}'>{{usuario.nome}}</option>
+        {% for u in usuarios %}
+        <option value='{{u.id}}'>{{u.nome}}</option>
+        {% endfor %}
+      </select>
+  </div>
+  </div>
+   <div class="form-group row">
+    <label for="descricao" class="col-sm-2 col-form-label">Descrição</label>
+    <div class="col-sm-8">
+      <textarea class="form-control" name="descricao" id="descricao" rows="2" >{{e.descricao}}</textarea>
+    </div>
+  </div>
+   <div class="form-group row">
+    <button class="btn btn-dark btn-lg btn-block" type="submit" class="col-sm-2 col-form-label">Salvar</button>
+  </div>
+
+
+
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta -Agendamento {% endblock %}
+
+{% block content %}
+  <div class="container">
+
+  <div class="row">
+  <h3>{{mes}} / {{ano}} - {{laboratorio}}</h3>
+  <table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Dia</th>
+      <th scope="col">Mês</th>
+      <th scope="col">D.Semana</th>
+      <th scope="col">Processo</th>
+      <th scope="col">Processo</th>
+      <th scope="col">Processo</th>
+      <th scope="col">Processo</th>
+      <th scope="col">Ações</th>
+
+    </tr>
+  </thead>
+  <tbody id="myTable">
+
+  {% for i in c %}
+
+  <tr>
+      {% if i[3] == 'Sábado' %}
+      <td style="color:red">{{i[0]}}</td>
+      <td style="color:red">{{i[1]}}</td>
+      <td style="color:red">{{i[3]}}</td>
+      <td style="color:red">Sábado</td>
+      <td style="color:red">Sábado</td>
+      <td style="color:red">Sábado</td>
+      <td style="color:red">Sábado</td>
+      <td style="color:red">Sábado</td>
+      {% elif i[3] == 'Domingo' %}
+      <td style="color:red">{{i[0]}}</td>
+      <td style="color:red">{{i[1]}}</td>
+      <td style="color:red">{{i[3]}}</td>
+      <td style="color:red">Domingo</td>
+      <td style="color:red">Domingo</td>
+      <td style="color:red">Domingo</td>
+      <td style="color:red">Domingo</td>
+      <td style="color:red">Domingo</td>
+      {% else %}
+      <td>{{i[0]}}</td>
+      <td>{{i[1]}}</td>
+      <td>{{i[3]}}</td>
+
+      <td><a href="/fazerAgendamento/{{i[0]}}/{{mes}}/{{ano}}">  {{i[4][0]}} </a></td>
+      <td><a href="/fazerAgendamento/{{i[0]}}/{{mes}}/{{ano}}">  {{i[4][1]}}  </a></td>
+      <td><a href="/fazerAgendamento/{{i[0]}}/{{mes}}/{{ano}}">  {{i[4][2]}}  </a></td>
+      <td><a href="/fazerAgendamento/{{i[0]}}/{{mes}}/{{ano}}">  {{i[4][3]}}  </a></td>
+      <td><a href="/listaAgendamentoPorData/{{i[0]}}/{{mes}}/{{ano}}"> Detalhar </a></td>
+
+
+
+
+
+
+
+      {% endif %}
+
+
+  </tr>
+  {% endfor %}
+
+
+
+  </tbody>
+</table>
+
+    </div>
+ <div class="row">
+
+  <form class="form-signin" action="/agendamentos"  method="post">
+
+      <div class="col">
+          <select name = 'ano'  class="custom-select mr-sm-2" id="ano" required>
+            <option selected value='2020'>2020</option>
+            <option value='2021'>2021</option>
+            <option value='2022'>2022</option>
+            <option value='2023'>2023</option>
+            <option value='2024'>2024</option>
+            <option value='2025'>2025</option>
+            <option value='2026'>2026</option>
+            <option value='2027'>2027</option>
+            <option value='2028'>2028</option>
+            <option value='2029'>2029</option>
+            <option value='2030'>2030</option>
+          </select>
+       </div>
+
+      <div class="col">
+          <select name = 'mes'  class="custom-select mr-sm-2" id="mes" required>
+            <option selected value='1'>Janeiro</option>
+            <option value='2'>Fevereiro</option>
+            <option value='3'>Março</option>
+            <option value='4'>Abril</option>
+            <option value='5'>Maio</option>
+            <option value='6'>Junho</option>
+            <option value='7'>Julho</option>
+            <option value='8'>Agosto</option>
+            <option value='9'>Setembro</option>
+            <option value='10'>Outubro</option>
+            <option value='11'>Novembro</option>
+            <option value='12'>Dezembro</option>
+          </select>
+       </div>
+
+
+       <div class="col">
+            <select name = 'laboratorio'  class="custom-select mr-sm-2" id="lab" required>
+            <option selected value='Laboratório 1 : Thiago / Mauro'>Laboratório 1 : Thiago / Mauro</option>
+            <option value='Laboratório 2 : Nelson / Salatiel'>Laboratório 2 : Nelson / Salatiel</option>
+            <option value='Laboratório 3 : Eduardo'>Laboratório 3 : Eduardo</option>
+            </select>
+       </div>
+
+      <div class="col">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Procurar</button>
+      </div>
+
+      </form>
+
+
+  </div>
+</div>
+
+
+{% endblock %}

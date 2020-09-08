@@ -1,0 +1,67 @@
+{% extends "base_laeta.html" %}
+{% block title %} {{super()}} - Laeta - Índice Geral {% endblock %}
+{% block content %}
+
+<div class="">
+  <h3 align="center">Lista de Serviços - Índice Geral</h3>
+    <h3>Filtro</h3>
+  <p>Digite algo no campo de entrada para pesquisar na tabela:</p>
+  <input class="form-control" id="myInput" type="text" placeholder="Procurar..">
+  <br>
+
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Responsável</th>
+      <th scope="col">Data da calibração</th>
+      <th scope="col">Processo</th>
+      <th scope="col">Equipamento</th>
+      <th scope="col">Certificado</th>
+      <th scope="col">MCI</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Ações</th>
+
+    </tr>
+  </thead>
+  <tbody id="myTable">
+  {% if i != [] %}
+  {% for i in indice %}
+  <tr>
+      <td>{{i.usuario.nome}}</td>
+      <td>{{i.data_realizacao_calibracao.strftime('%d/%m/%Y')}}</td>
+      <td>{{i.agendamento.processo}}</td>
+      <td>{{i.agendamento.equipamento}}</td>
+      <td>{{i.certificado}}</td>
+      <td>{{i.agendamento.cliente.mci}}</td>
+      <td>{{i.agendamento.cliente.nome}}</td>
+      <th>
+          <a href="/visualizarIndice/{{i.id}}">Visualizar</a> ||
+          <a style ="color:#D55151;"href="/deletarIndice/{{i.id}}">Excluir</a>
+      </th>
+
+
+  </tr>
+  {% endfor %}
+  {% endif %}
+
+
+
+  </tbody>
+</table>
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+{% endblock %}
