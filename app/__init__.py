@@ -10,7 +10,8 @@ from flask_login import LoginManager
 app = Flask(__name__,template_folder='templates',static_folder='static')
 
 #app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///storage.db' Configurações agora no arquivo criado config.py
-app.config.from_object('config')
+#app.config.from_object('config')
+app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
 
